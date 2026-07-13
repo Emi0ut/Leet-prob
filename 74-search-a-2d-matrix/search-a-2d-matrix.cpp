@@ -1,0 +1,36 @@
+class Solution {
+public:
+
+    bool bsearch(vector<vector<int>>& mat,int tar,int row){
+        int n=mat[0].size();
+        int st=0,e=n-1;
+        while(st<=e){
+            int mid=st+(e-st)/2;
+            if(tar==mat[row][mid]){
+                return true;
+            }else if(tar>mat[row][mid]){
+                st=mid+1;
+            }else{
+                e=mid-1;
+            }
+        }
+        return false;
+    }
+    bool searchMatrix(vector<vector<int>>& mat, int tar) {
+        int m=mat.size();
+        int n=mat[0].size();
+        int st=0,e=m-1;
+        while(st<=e){
+            int mid=st+(e-st)/2;
+            if(mat[mid][0]<=tar && tar<=mat[mid][n-1]){
+                return bsearch(mat,tar,mid);
+            }else if(tar>=mat[mid][n-1]){
+                st=mid+1;
+            }else{
+                e=mid-1;
+            }
+        }
+        return false;
+
+    }
+};
